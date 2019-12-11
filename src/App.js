@@ -1,25 +1,31 @@
-import React, { useState } from "react";
-const socket = require("socket.io-client")('http://192.168.0.31:27817');
+import React, { useState, useRef } from "react";
+const socket = require("socket.io-client")("http://localhost:27817");
 
 function App() {
-  const [temp, setTemp] = useState(0);
-
-  function handleClick() {
-    setTemp(temp + 1);
-  }
+  const formInput = useRef(null);
 
   function handleSocket(event) {
     event.preventDefault();
-    console.log('test');
-    socket.emit('message', 'test');
+    socket.emit("message", { message: formInput.current.value });
+    formInput.current.value = "";
   }
+
+  socket.on("response", response => {
+    console.log(response);
+  });
 
   return (
     <div className="App">
       <div className="messages">Test</div>
-      <form>
-        <input type="text" className="text" name="text" />
-        <button type="submit" onClick={handleSocket} >Test</button>
+      <form action="">
+        <input
+          ref={formInput}
+          type="text"
+          className="text"
+          name="text"
+          autoComplete="off"
+        />
+        <input type="submit" onClick={handleSocket}></input>
       </form>
     </div>
   );
