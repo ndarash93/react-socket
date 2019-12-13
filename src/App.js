@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./app.css";
 
-const socket = require("socket.io-client")("http://192.168.0.31:27817");
+const socket = require("socket.io-client")("http://localhost:27817");
 
 function App() {
   const formInput = useRef(null);
@@ -9,7 +9,7 @@ function App() {
 
   function handleSocket(event) {
     event.preventDefault();
-      if(formInput.current.value.length > 0){
+    if (formInput.current.value.length > 0) {
       socket.emit("message", { message: formInput.current.value });
       setMessages([
         { sentByMe: true, message: formInput.current.value },
@@ -25,10 +25,18 @@ function App() {
 
   function printMessages(messagesToPrint) {
     return messagesToPrint.map((message, i) => {
-      if(message.sentByMe){
-        return <p key={i} className="message my-message">{message.message}</p>;
+      if (message.sentByMe) {
+        return (
+          <p key={i} className="message my-message">
+            {message.message}
+          </p>
+        );
       }
-    return <p key={i} className="message">{message.message}</p>
+      return (
+        <p key={i} className="message">
+          {message.message}
+        </p>
+      );
     });
   }
 

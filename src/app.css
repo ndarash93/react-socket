@@ -27,29 +27,49 @@ body {
   height: calc(100% - 70px);
   width: 50%;
   left: 25%;
-  background-color: white;
+  background-color: #333;
   border-radius: 10px;
   display: flex;
   flex-direction: column-reverse;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+}
+
+.messages::-webkit-scrollbar {
+  width: 10px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background-color: #333;
+  border-radius: 10px;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 10px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
 }
 
 .messages .message {
+  color: white;
   position: relative;
   width: 75%;
-  background: lightblue;
+  background: #444;
   font-size: 20px;
   margin-top: 0px;
   margin-bottom: 20px;
   margin-left: 5%;
   padding: 10px;
   border-radius: 10px;
-  overflow-wrap: break-word;
 }
 
 .messages .my-message {
   margin-left: 15%;
-  background-color: lightgrey;
+  background-color: #848;
 }
 
 .text {
@@ -62,8 +82,12 @@ body {
   padding-left: 2.5%;
   padding-right: 12.5%;
   border: none;
-  background-color: white;
+  background-color: #333;
+  color: white;
   border-radius: 50px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
 }
 
 .submit {
@@ -74,10 +98,9 @@ body {
   font-size: 20px;
   right: 26%;
   height: 40px;
-  background-color: purple;
+  background-color: #848;
   color: white;
   border-radius: 50px;
-  overflow-wrap: break-word;
 }
 
 /*# sourceMappingURL=app.css.map */
